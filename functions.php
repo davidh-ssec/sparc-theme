@@ -52,3 +52,54 @@ function myfoo( $text ) {
 	$text .= ' bar!';
 	return $text;
 }
+
+// Advanced Custom Fields for Experiment Posts (requires ACF plugin)
+if(function_exists("register_field_group"))
+{
+	register_field_group(array (
+		'id' => 'acf_experiment',
+		'title' => 'Experiment',
+		'fields' => array (
+			array (
+				'key' => 'field_54c8180bc1c5d',
+				'label' => 'Begin Date',
+				'name' => 'begin_date',
+				'type' => 'date_picker',
+				'instructions' => 'Begin date of the experiment',
+				'required' => 1,
+				'date_format' => 'yymmdd',
+				'display_format' => 'yy/mm/dd',
+				'first_day' => 0,
+			),
+			array (
+				'key' => 'field_54c8189ac1c5f',
+				'label' => 'End Date',
+				'name' => 'end_date',
+				'type' => 'date_picker',
+				'instructions' => 'End date of the experiment',
+				'required' => 1,
+				'date_format' => 'yymmdd',
+				'display_format' => 'yy/mm/dd',
+				'first_day' => 0,
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'experiment',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+}

@@ -9,33 +9,36 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		<header class="header" >
 			{% block header %}
-				<div class="wrapper">
-					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="/" rel="home">{{site.name}}</a>
-					</h1>
-					<nav id="nav-main" class="nav-main" role="navigation">
-						<ul class="nav">
+				<div id="header" class="wrapper">
+                    <div id="banner">
+                    <div id="banner_inner" class="central_column">
+                    <div id="title">
+                        <h1 class="hdr-logo" role="banner">
+                            <a class="hdr-logo-link" href="/" rel="home">{{site.name}}</a>
+                        </h1>
+                        <div class="logos">
+                            <a href="http://www.wisc.edu/"><img src="{{site.theme.link}}/images/uw-logo.png" id="uw_logo" alt="UW-Madison"></a> <a href="http://www.ssec.wisc.edu/"><img src="{{site.theme.link}}/images/ssec-logo.png" id="sseclogo" alt="SSEC"></a>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div id="top_nav" class="navbar">
+					<nav id="nav-main" class="navbar_inner central_column nav-main" role="navigation">
+						<ul class="inner_padding nav">
 						{% for item in menu.get_items %}
 							<li class="nav-item {{item.classes | join(' ')}}">
 								<a class="nav-link" href="{{item.get_link}}">{{item.title}}</a>
-								{% if item.get_children %}
-									<ul class="nav nav-drop">
-									{% for child in item.get_children %}
-										<li class="nav-drop-item">
-											<a class="nav-link" href="{{child.get_link}}">{{child.title}}</a>
-										</li>
-									{% endfor %}
-									</ul>
-								{% endif %}
 							</li>
 						{% endfor %}
 						</ul>
 					</nav><!-- #nav -->
+                    </div>
 				</div>
 			{% endblock %}
 		</header>
 
-		<section id="content" role="main" class="content-wrapper">
+        <div id="content_container" class="central_column">
+		<section id="content" role="main" class="inner_padding content-wrapper">
 			{% if title %}<h1>{{title}}</h1>{% endif %}
 			<div class="wrapper {{sidebar_class}}">
 				{% block content %}
@@ -55,5 +58,6 @@
 			</footer>
 			{{ function('wp_footer') }}
 		{% endblock %}
+        </div>
 	</body>
 </html>
